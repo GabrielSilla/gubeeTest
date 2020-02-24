@@ -38,7 +38,7 @@ public class ProductReaderService {
     public List<ProductDTO> readProductsFromJson() throws IOException {
         Config config = configService.findConfigByKey("JSON_READED");
 
-        if("0".equals(config.getValue())) {
+        if(config != null && "0".equals(config.getValue())) {
             List<ProductDTO> products = JsonReader.readProductJson();
             List<Product> productList = persistAllData(products);
             config.setValue("1");
@@ -50,7 +50,7 @@ public class ProductReaderService {
     public List<Product> persistAllData(List<ProductDTO> products) {
         List<Stack> stacks = persistStacks(products);
         List<TargetMarket> targetMarkets = persistTargetMarkets(products);
-        return persistProduct(products, stacks, targetMarkets);
+        return productService.saveAll(persistProduct(products, stacks, targetMarkets));
     }
 
     public List<Stack> persistStacks(List<ProductDTO> products) {
@@ -103,6 +103,6 @@ public class ProductReaderService {
             }
         });
 
-        return productService.saveAll(allProducts);
+        return allProducts;
     }
 }

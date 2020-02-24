@@ -1,6 +1,7 @@
 package com.gubee.gubee.model.entity.product;
 
 import com.gubee.gubee.core.entity.AbstractEntity;
+import com.gubee.gubee.model.entity.stack.Stack;
 import com.gubee.gubee.model.entity.targetMarket.TargetMarket;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,5 +24,5 @@ public class ProductStack extends AbstractEntity {
     @JoinTable(name = "stack",
             joinColumns = @JoinColumn(name = "stack_id"),
             inverseJoinColumns = @JoinColumn(name = "id"))
-    TargetMarket targetMarket;
+    Stack stack;
 }

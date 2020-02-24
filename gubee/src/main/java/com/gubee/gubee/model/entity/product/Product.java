@@ -4,6 +4,7 @@ import com.gubee.gubee.core.entity.AbstractEntity;
 import com.gubee.gubee.model.dto.product.ProductDTO;
 import com.gubee.gubee.model.entity.stack.Stack;
 import com.gubee.gubee.model.entity.targetMarket.TargetMarket;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Product extends AbstractEntity {
 
     @NotNull

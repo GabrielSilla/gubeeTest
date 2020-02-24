@@ -1,0 +1,103 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div #filter class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-danger">
+                    <h4 class="card-title ">Product Search Engine</h4>
+                </div>
+                <div class="card-body">
+                    <form class="col-md-12 row" [formGroup]="formFiltro">
+                        <div class="form-group col-md-12">
+                            <mat-form-field>
+                                <mat-label>Name</mat-label>
+                                <input matInput formControlName="productName">
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <mat-form-field>
+                                <mat-label>Description</mat-label>
+                                <input matInput formControlName="description">
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <mat-form-field>
+                                <mat-label>Stack</mat-label>
+                                <mat-select formControlName="stack" multiple>
+                                <mat-option *ngFor="let stack of stacks" [value]="stack.id">{{stack.name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="form-group col-md-5">
+                            <mat-form-field>
+                                <mat-label>Target Market</mat-label>
+                                <mat-select formControlName="targetMarket" multiple>
+                                <mat-option *ngFor="let tm of targetMarkets" [value]="tm.id">{{tm.name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <button mat-raised-button color="warn" (click)="filtrar()">
+                                <i class="material-icons">search</i> Search
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title ">Results</h4>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                          <table class="table">
+                              <thead>
+                                  <th>
+                                      ID
+                                  </th>
+                                  <th>
+                                      Name
+                                  </th>
+                                  <th>
+                                      Description
+                                  </th>
+                                  <th>
+                                      Stack
+                                  </th>
+                                  <th>
+                                      Target Market
+                                  </th>
+                              </thead> 
+                              <tbody *ngIf="products != null && products.length > 0">
+                                  <tr *ngFor="let product of products">
+                                      <td>
+                                          {{product.id}}
+                                      </td>
+                                      <td>
+                                          {{product.productName}}
+                                      </td>
+                                      <td>
+                                          {{product.description}}
+                                      </td>
+                                      <td class="text-small">
+                                            <div *ngFor="let stack of product.stack">&bull;<span>{{stack.name}}</span></div>
+                                      </td>
+                                      <td class="text-small">
+                                            <div *ngFor="let tm of product.targetMarket">&bull;<span>{{tm.name}}</span></div>
+                                      </td>
+                                    </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
